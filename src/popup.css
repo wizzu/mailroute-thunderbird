@@ -1,0 +1,151 @@
+:root {
+  --bg: #ffffff;
+  --fg: #1c1b22;
+  --muted: #6b6a75;
+  --line: #e3e2e8;
+  --track: #efeef3;
+  --fast: #2e9d5b;
+  --medium: #d08a0b;
+  --slow: #d1394b;
+  --skew: #8a5cd1;
+  --tag-bg: #efeef3;
+  --raw-bg: #f6f5f9;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1f1e25;
+    --fg: #eceaf2;
+    --muted: #a3a1ad;
+    --line: #36343f;
+    --track: #2d2b35;
+    --fast: #4cc47d;
+    --medium: #f0ad32;
+    --slow: #ff6b7c;
+    --skew: #b38cff;
+    --tag-bg: #2d2b35;
+    --raw-bg: #17161c;
+  }
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  width: 580px;
+  max-height: 580px;
+  overflow-y: auto;
+  padding: 14px 16px 10px;
+  background: var(--bg);
+  color: var(--fg);
+  font: 13px/1.4 system-ui, sans-serif;
+}
+
+h1 {
+  margin: 0 0 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--line);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--fg);
+}
+
+/* Summary */
+.total { font-size: 14px; color: var(--muted); }
+/* Duration as a heading, its description as a subtitle on the next line */
+.total-time { display: block; font-size: 20px; line-height: 1.2; font-weight: 700; color: var(--fg); font-variant-numeric: tabular-nums; }
+.total-word { font-weight: 500; color: var(--muted); }
+.total-label { display: block; margin-top: 1px; }
+.facts { margin: 6px 0 0; padding: 0; list-style: none; color: var(--muted); }
+.facts li { margin: 2px 0; }
+.facts .ends { color: var(--fg); overflow-wrap: anywhere; }
+.facts strong.fast { color: var(--fast); }
+.facts strong.medium { color: var(--medium); }
+.facts strong.slow { color: var(--slow); }
+.warn { color: var(--skew); }
+
+/* Timeline */
+#timeline { list-style: none; margin: 12px 0 0; padding: 0; border-top: 1px solid var(--line); }
+
+.day {
+  margin: 10px 0 2px;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.delivered {
+  padding: 3px 0 3px 104px;
+  font-size: 12px;
+  color: var(--muted);
+  font-style: italic;
+}
+
+.row details { border-bottom: 1px solid var(--line); }
+.row summary {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 8px;
+  padding: 7px 0;
+  cursor: pointer;
+  list-style: none;
+}
+.row summary::-webkit-details-marker { display: none; }
+.row summary:hover { background: var(--raw-bg); }
+
+.delta {
+  text-align: right;
+  font-weight: 700;
+  font-size: 14px;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+  padding-top: 1px;
+}
+.fast .delta { color: var(--fast); }
+.medium .delta { color: var(--medium); }
+.slow .delta { color: var(--slow); }
+.skew .delta { color: var(--skew); }
+.first .delta, .untimed .delta { color: var(--muted); font-weight: 600; }
+
+/* Signing times: points on the timeline, not hops */
+.sig summary { padding: 3px 0; }
+.sig .delta { color: var(--muted); font-weight: 500; font-size: 12px; }
+.sig .track { height: 3px; margin: 4px 0 3px; }
+.sig .bar { background: var(--muted); opacity: 0.45; }
+.sig .host { font-weight: 400; color: var(--muted); font-size: 12px; }
+.sig .when { font-size: 11px; opacity: 0.85; }
+
+.main { min-width: 0; }
+.track { height: 6px; border-radius: 3px; background: var(--track); margin: 6px 0 5px; overflow: hidden; }
+.bar { height: 100%; border-radius: 3px; background: var(--muted); }
+.fast .bar { background: var(--fast); }
+.medium .bar { background: var(--medium); }
+.slow .bar { background: var(--slow); }
+
+.what { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 8px; }
+.host { font-weight: 600; overflow-wrap: anywhere; }
+.origin .host { font-weight: 500; font-style: italic; }
+.sub { color: var(--muted); font-size: 12px; overflow-wrap: anywhere; }
+.tag {
+  font-size: 11px;
+  padding: 0 5px;
+  border-radius: 3px;
+  background: var(--tag-bg);
+  color: var(--muted);
+}
+.tag.x { color: var(--skew); }
+
+.when { display: flex; flex-wrap: wrap; gap: 2px 12px; margin-top: 2px; color: var(--muted); font-size: 12px; font-variant-numeric: tabular-nums; }
+
+.raw {
+  margin: 0 0 8px 104px;
+  padding: 8px 10px;
+  border-radius: 4px;
+  background: var(--raw-bg);
+  font: 11.5px/1.45 ui-monospace, Menlo, Consolas, monospace;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+#status { color: var(--muted); margin: 0; }
+#status:empty { display: none; }
